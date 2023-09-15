@@ -1,0 +1,777 @@
+[
+    {
+      "name": "cms_user_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "User Management"
+    },
+    {
+      "name": "cms_user_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "User Management"
+    },
+    {
+      "name": "cms_user_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "User Management"
+    },
+    {
+      "name": "cms_user_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "User Management"
+    },
+    {
+      "name": "cms_role_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "User Role & Permission Management"
+    },
+    {
+      "name": "cms_role_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "User Role & Permission Management"
+    },
+    {
+      "name": "cms_role_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "User Role & Permission Management"
+    },
+    {
+      "name": "cms_role_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "User Role & Permission Management"
+    },
+    {
+      "name": "cms_trailer_type_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "Trailer Type Management"
+    },
+    {
+      "name": "cms_trailer_type_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "Trailer Type Management"
+    },
+    {
+      "name": "cms_trailer_type_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "Trailer Type Management"
+    },
+    {
+      "name": "cms_trailer_type_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "Trailer Type Management"
+    },
+    {
+      "name": "cms_trailer_renter_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "Trailer renter Management"
+    },
+    {
+      "name": "cms_trailer_renter_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "Trailer renter Management"
+    },
+    {
+      "name": "cms_trailer_renter_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "Trailer renter Management"
+    },
+    {
+      "name": "cms_trailer_renter_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "Trailer renter Management"
+    },
+    {
+      "name": "cms_yard_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "Yard Management"
+    },
+    {
+      "name": "cms_yard_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "Yard Management"
+    },
+    {
+      "name": "cms_yard_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "Yard Management"
+    },
+    {
+      "name": "cms_yard_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "Yard Management"
+    },
+    {
+      "name": "cms_customer_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "Customer Management"
+    },
+    {
+      "name": "cms_customer_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "Customer Management"
+    },
+    {
+      "name": "cms_customer_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "Customer Management"
+    },
+    {
+      "name": "cms_customer_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "Customer Management"
+    },
+    {
+      "name": "cms_driver_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "Driver Management"
+    },
+    {
+      "name": "cms_driver_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "Driver Management"
+    },
+    {
+      "name": "cms_driver_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "Driver Management"
+    },
+    {
+      "name": "cms_driver_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "Driver Management"
+    },
+    {
+      "name": "cms_status_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "Inventory Item Status Management"
+    },
+    {
+      "name": "cms_status_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "Inventory Item Status Management"
+    },
+    {
+      "name": "cms_status_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "Inventory Item Status Management"
+    },
+    {
+      "name": "cms_status_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "Inventory Item Status Management"
+    },
+    {
+      "name": "cms_equipment_model_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "Equipment Model Management"
+    },
+    {
+      "name": "cms_equipment_model_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "Equipment Model Management"
+    },
+    {
+      "name": "cms_equipment_model_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "Equipment Model Management"
+    },
+    {
+      "name": "cms_equipment_model_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "Equipment Model Management"
+    },
+    {
+      "name": "cms_equipment_class_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "Equipment Class Management"
+    },
+    {
+      "name": "cms_equipment_class_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "Equipment Class Management"
+    },
+    {
+      "name": "cms_equipment_class_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "Equipment Class Management"
+    },
+    {
+      "name": "cms_equipment_class_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "Equipment Class Management"
+    },
+    {
+      "name": "cms_attachment_partno_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "Attachment Part No. Management"
+    },
+    {
+      "name": "cms_attachment_partno_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "Attachment Part No. Management"
+    },
+    {
+      "name": "cms_attachment_partno_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "Attachment Part No. Management"
+    },
+    {
+      "name": "cms_attachment_partno_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "Attachment Part No. Management"
+    },
+    {
+      "name": "cms_attachment_class_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "Attachment Class Management"
+    },
+    {
+      "name": "cms_attachment_class_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "Attachment Class Management"
+    },
+    {
+      "name": "cms_attachment_class_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "Attachment Class Management"
+    },
+    {
+      "name": "cms_attachment_class_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "Attachment Class Management"
+    },
+    {
+      "name": "cms_dealer_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "Dealer Management"
+    },
+    {
+      "name": "cms_dealer_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "Dealer Management"
+    },
+    {
+      "name": "cms_dealer_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "Dealer Management"
+    },
+    {
+      "name": "cms_dealer_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "Dealer Management"
+    },
+    {
+      "name": "cms_maintenance_item_create",
+      "description": "Create",
+      "platform": "CMS",
+      "group": "Maintenance Item Management"
+    },
+    {
+      "name": "cms_maintenance_item_read",
+      "description": "Read",
+      "platform": "CMS",
+      "group": "Maintenance Item Management"
+    },
+    {
+      "name": "cms_maintenance_item_update",
+      "description": "Update",
+      "platform": "CMS",
+      "group": "Maintenance Item Management"
+    },
+    {
+      "name": "cms_maintenance_item_delete",
+      "description": "Delete",
+      "platform": "CMS",
+      "group": "Maintenance Item Management"
+    },
+    {
+      "name": "portal_trailer_checkin",
+      "description": "Check In",
+      "platform": "Portal",
+      "group": "Trailer Management"
+    },
+    {
+      "name": "portal_trailer_checkout",
+      "description": "Check Out",
+      "platform": "Portal",
+      "group": "Trailer Management"
+    },
+    {
+      "name": "portal_trailer_create",
+      "description": "Create",
+      "platform": "Portal",
+      "group": "Trailer Management"
+    },
+    {
+      "name": "portal_trailer_read",
+      "description": "Read",
+      "platform": "Portal",
+      "group": "Trailer Management"
+    },
+    {
+      "name": "portal_trailer_update",
+      "description": "Update",
+      "platform": "Portal",
+      "group": "Trailer Management"
+    },
+    {
+      "name": "portal_trailer_delete",
+      "description": "Delete",
+      "platform": "Portal",
+      "group": "Trailer Management"
+    },
+    {
+      "name": "portal_vehicle_checkin",
+      "description": "Check In",
+      "platform": "Portal",
+      "group": "Vehicle Control Management"
+    },
+    {
+      "name": "portal_vehicle_checkout",
+      "description": "Check Out",
+      "platform": "Portal",
+      "group": "Vehicle Control Management"
+    },
+    {
+      "name": "portal_equipment_checkin",
+      "description": "Check In",
+      "platform": "Portal",
+      "group": "Equipment Management"
+    },
+    {
+      "name": "portal_equipment_checkout",
+      "description": "Check Out",
+      "platform": "Portal",
+      "group": "Equipment Management"
+    },
+    {
+      "name": "portal_equipment_create",
+      "description": "Create",
+      "platform": "Portal",
+      "group": "Equipment Management"
+    },
+    {
+      "name": "portal_equipment_read",
+      "description": "Read",
+      "platform": "Portal",
+      "group": "Equipment Management"
+    },
+    {
+      "name": "portal_equipment_update",
+      "description": "Update",
+      "platform": "Portal",
+      "group": "Equipment Management"
+    },
+    {
+      "name": "portal_equipment_delete",
+      "description": "Delete",
+      "platform": "Portal",
+      "group": "Equipment Management"
+    },
+    {
+      "name": "portal_attachment_checkin",
+      "description": "Check In",
+      "platform": "Portal",
+      "group": "Attachment Management"
+    },
+    {
+      "name": "portal_attachment_checkout",
+      "description": "Check Out",
+      "platform": "Portal",
+      "group": "Attachment Management"
+    },
+    {
+      "name": "portal_attachment_create",
+      "description": "Create",
+      "platform": "Portal",
+      "group": "Attachment Management"
+    },
+    {
+      "name": "portal_attachment_read",
+      "description": "Read",
+      "platform": "Portal",
+      "group": "Attachment Management"
+    },
+    {
+      "name": "portal_attachment_update",
+      "description": "Update",
+      "platform": "Portal",
+      "group": "Attachment Management"
+    },
+    {
+      "name": "portal_attachment_delete",
+      "description": "Delete",
+      "platform": "Portal",
+      "group": "Attachment Management"
+    },
+    {
+      "name": "portal_schedule_create",
+      "description": "Create",
+      "platform": "Portal",
+      "group": "Schedule"
+    },
+    {
+      "name": "portal_schedule_read",
+      "description": "Read",
+      "platform": "Portal",
+      "group": "Schedule"
+    },
+    {
+      "name": "portal_schedule_update",
+      "description": "Update",
+      "platform": "Portal",
+      "group": "Schedule"
+    },
+    {
+      "name": "portal_schedule_delete",
+      "description": "Delete",
+      "platform": "Portal",
+      "group": "Schedule"
+    },
+    {
+      "name": "portal_maintenance_workorder_create",
+      "description": "Create",
+      "platform": "Portal",
+      "group": "Maintenance - Work order management"
+    },
+    {
+      "name": "portal_maintenance_workorder_read",
+      "description": "Read",
+      "platform": "Portal",
+      "group": "Maintenance - Work order management"
+    },
+    {
+      "name": "portal_maintenance_workorder_update",
+      "description": "Update",
+      "platform": "Portal",
+      "group": "Maintenance - Work order management"
+    },
+    {
+      "name": "portal_maintenance_workorder_delete",
+      "description": "Delete",
+      "platform": "Portal",
+      "group": "Maintenance - Work order management"
+    },
+    {
+      "name": "portal_maintenance_downreport_create",
+      "description": "Create",
+      "platform": "Portal",
+      "group": "Maintenance - Down Report"
+    },
+    {
+      "name": "portal_maintenance_downreport_read",
+      "description": "Read",
+      "platform": "Portal",
+      "group": "Maintenance - Down Report"
+    },
+    {
+      "name": "portal_maintenance_downreport_update",
+      "description": "Update",
+      "platform": "Portal",
+      "group": "Maintenance - Down Report"
+    },
+    {
+      "name": "portal_maintenance_downreport_delete",
+      "description": "Delete",
+      "platform": "Portal",
+      "group": "Maintenance - Down Report"
+    },
+    {
+      "name": "portal_exercise",
+      "description": "Maintenance - Exercise",
+      "platform": "Portal",
+      "group": ""
+    },
+    {
+      "name": "portal_pdi_create",
+      "description": "Create",
+      "platform": "Portal",
+      "group": "Maintenance - PDI"
+    },
+    {
+      "name": "portal_pdi_read",
+      "description": "Read",
+      "platform": "Portal",
+      "group": "Maintenance - PDI"
+    },
+    {
+      "name": "portal_pdi_update",
+      "description": "Update",
+      "platform": "Portal",
+      "group": "Maintenance - PDI"
+    },
+    {
+      "name": "portal_pdi_delete",
+      "description": "Delete",
+      "platform": "Portal",
+      "group": "Maintenance - PDI"
+    },
+    {
+      "name": "portal_billing_setting",
+      "description": "Setting Billing",
+      "platform": "Portal",
+      "group": ""
+    },
+    {
+      "name": "portal_billing_maintenance_view",
+      "description": "View",
+      "platform": "Portal",
+      "group": "Maintenance Billing"
+    },
+    {
+      "name": "portal_billing_maintenance_export",
+      "description": "Export",
+      "platform": "Portal",
+      "group": "Maintenance Billing"
+    },
+    {
+      "name": "portal_billing_dealer_view",
+      "description": "View",
+      "platform": "Portal",
+      "group": "Dealer Billing"
+    },
+    {
+      "name": "portal_billing_dealer_export",
+      "description": "Export",
+      "platform": "Portal",
+      "group": "Dealer Billing"
+    },
+    {
+      "name": "portal_billing_attachment_view",
+      "description": "View",
+      "platform": "Portal",
+      "group": "Attachment Billing"
+    },
+    {
+      "name": "portal_billing_attachment_export",
+      "description": "Export",
+      "platform": "Portal",
+      "group": "Attachment Billing"
+    },
+    {
+      "name": "portal_billing_equipment_view",
+      "description": "View",
+      "platform": "Portal",
+      "group": "Equipment Billing"
+    },
+    {
+      "name": "portal_billing_equipment_export",
+      "description": "Export",
+      "platform": "Portal",
+      "group": "Equipment Billing"
+    },
+    {
+      "name": "portal_billing_trailer_view",
+      "description": "View",
+      "platform": "Portal",
+      "group": "Trailer Billing"
+    },
+    {
+      "name": "portal_billing_trailer_export",
+      "description": "Export",
+      "platform": "Portal",
+      "group": "Trailer Billing"
+    },
+    {
+      "name": "app_trailer_checkin",
+      "description": "Check In",
+      "platform": "Tablet app",
+      "group": "Trailer Management"
+    },
+    {
+      "name": "app_trailer_checkout",
+      "description": "Check Out",
+      "platform": "Tablet app",
+      "group": "Trailer Management"
+    },
+    {
+      "name": "app_vehicle_checkin",
+      "description": "Check In",
+      "platform": "Tablet app",
+      "group": "Vehicle Control Management"
+    },
+    {
+      "name": "app_vehicle_checkout",
+      "description": "Check Out",
+      "platform": "Tablet app",
+      "group": "Vehicle Control Management"
+    },
+    {
+      "name": "app_equipment_checkin",
+      "description": "Check In",
+      "platform": "Tablet app",
+      "group": "Equipment Management"
+    },
+    {
+      "name": "app_equipment_checkout",
+      "description": "Check Out",
+      "platform": "Tablet app",
+      "group": "Equipment Management"
+    },
+    {
+      "name": "app_attachment_checkin",
+      "description": "Check In",
+      "platform": "Tablet app",
+      "group": "Attachment Management"
+    },
+    {
+      "name": "app_attachment_checkout",
+      "description": "Check Out",
+      "platform": "Tablet app",
+      "group": "Attachment Management"
+    },
+    {
+      "name": "app_schedule_create",
+      "description": "Create",
+      "platform": "Tablet app",
+      "group": "Schedule"
+    },
+    {
+      "name": "app_schedule_read",
+      "description": "Read",
+      "platform": "Tablet app",
+      "group": "Schedule"
+    },
+    {
+      "name": "app_schedule_update",
+      "description": "Update",
+      "platform": "Tablet app",
+      "group": "Schedule"
+    },
+    {
+      "name": "app_schedule_delete",
+      "description": "Delete",
+      "platform": "Tablet app",
+      "group": "Schedule"
+    },
+    {
+      "name": "app_maintenance_workorder_create",
+      "description": "Create",
+      "platform": "Tablet app",
+      "group": "Maintenance - Down Report"
+    },
+    {
+      "name": "app_maintenance_workorder_read",
+      "description": "Read",
+      "platform": "Tablet app",
+      "group": "Maintenance - Down Report"
+    },
+    {
+      "name": "app_maintenance_workorder_update",
+      "description": "Update",
+      "platform": "Tablet app",
+      "group": "Maintenance - Down Report"
+    },
+    {
+      "name": "app_maintenance_workorder_delete",
+      "description": "Delete",
+      "platform": "Tablet app",
+      "group": "Maintenance - Down Report"
+    },
+    {
+      "name": "app_maintenance_downreport_create",
+      "description": "Create",
+      "platform": "Tablet app",
+      "group": "Maintenance - Down Report"
+    },
+    {
+      "name": "app_maintenance_downreport_read",
+      "description": "Read",
+      "platform": "Tablet app",
+      "group": "Maintenance - Down Report"
+    },
+    {
+      "name": "app_maintenance_downreport_update",
+      "description": "Update",
+      "platform": "Tablet app",
+      "group": "Maintenance - Down Report"
+    },
+    {
+      "name": "app_maintenance_downreport_delete",
+      "description": "Delete",
+      "platform": "Tablet app",
+      "group": "Maintenance - Down Report"
+    },
+    {
+      "name": "app_exercise",
+      "description": "Maintenance - Exercise",
+      "platform": "Tablet app",
+      "group": ""
+    },
+    {
+      "name": "app_pdi_create",
+      "description": "Create",
+      "platform": "Tablet app",
+      "group": "Maintenance - PDI"
+    },
+    {
+      "name": "app_pdi_read",
+      "description": "Read",
+      "platform": "Tablet app",
+      "group": "Maintenance - PDI"
+    },
+    {
+      "name": "app_pdi_update",
+      "description": "Update",
+      "platform": "Tablet app",
+      "group": "Maintenance - PDI"
+    },
+    {
+      "name": "app_pdi_delete",
+      "description": "Delete",
+      "platform": "Tablet app",
+      "group": "Maintenance - PDI"
+    }
+  ]
+  
