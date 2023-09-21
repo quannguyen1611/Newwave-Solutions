@@ -18,6 +18,7 @@ import {
   import * as fs from 'fs';
   import { ModuleRef } from '@nestjs/core';
   import { UsersService } from '../users/services/users/users.service';
+  import { PERMISSIONS_KEY } from '../../decorator/permission.decorator';
   
   @Injectable()
   export class RoleService implements OnModuleInit {
@@ -36,10 +37,22 @@ import {
     async create(createRoleDto: CreateRoleDto): Promise<ResponseRoleDto> {
       const role = new RoleEntity();
       role.name = createRoleDto.name;
+      role.type = createRoleDto.type;
       role.permissions = createRoleDto.permissions;
       role.isAllPermission = createRoleDto.isAllPermission;
+      if (role.name === 'superAdmin'){
+        role.isAllPermission = true;
+        role.type = '1';
+      }else if ( role.name === 'admin'){
+        role.permissions = ['createUser', 'deleteUser', 'createProfile', 'deleteProfile'];
+        role.isAllPermission = false;
+        role.type = '2';
+      }else if ( role.name === 'user'){
+        role.permissions = ['view'];
+        role.isAllPermission = false;
+        role.type = '3';
+      }
       await this.roleRepository.save(role);
-  
       return this.transformData<ResponseRoleDto>(role);
     }
   
@@ -92,6 +105,7 @@ import {
         role.name = updateRoleDto.name;
         role.permissions = updateRoleDto.permissions;
         role.isAllPermission = updateRoleDto.isAllPermission;
+        role.type = updateRoleDto.type;
         const updatedRole = await this.roleRepository.save(role);
         return this.transformData(updatedRole);
       } catch (error) {

@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../modules/typeorm/entities/user.entity';
 import { Repository } from 'typeorm';
 import { PERMISSIONS_KEY } from '../decorator/permission.decorator';
+import { Todo } from 'src/modules/typeorm/entities/todo.entity';
 
 @Injectable()
 export class PermissionGuard implements CanActivate {
@@ -18,6 +19,7 @@ export class PermissionGuard implements CanActivate {
     const requiredPermissions = this.reflector.getAllAndOverride< //retrieve the required permissions for the current route or handler.
       EPermissions[]
     >(PERMISSIONS_KEY, [context.getHandler(), context.getClass()]);
+
     if (!requiredPermissions) { //If no permission is requrired, the system returns ture and grant access
       return true;
     }
@@ -30,7 +32,7 @@ export class PermissionGuard implements CanActivate {
 
     let isAllPermission: boolean = false;
     //This fucntion processes the user's role to complie a list of permissions. It iterates through the user's role and 
-    // extracts the permission associate with each role.
+    //extracts the permission associate with each role.
     const userPermissions = userData?.roles.reduce( //assign 'userPermissions' with the result of reduce. 'reduce' function is used to transform an array into a single value.
       (previousValues, currentValue) => {                     
         if (currentValue.isAllPermission && !isAllPermission) { //check to determine if the user has a role that grants them all permissions
@@ -50,4 +52,6 @@ export class PermissionGuard implements CanActivate {
     );
   }
 }
+
+
 

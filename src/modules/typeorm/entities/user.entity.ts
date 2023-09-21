@@ -36,4 +36,16 @@ export class User extends BaseEntity {
 
     @Column('simple-array', { nullable: true }) // Assuming roleIds is an array of role IDs.
     roleIds: number[];
+
+    @Column({nullable: true})//specify user type (ex: admin, super admin, etc)
+    type: string;
+
+    @Column({ nullable: true })
+    createdByUser: string; 
+
+    @Column({ nullable: true })
+    deletedByUser: string;
+
+    @Column({ nullable: true })
+    updatedByUser: string;
 }

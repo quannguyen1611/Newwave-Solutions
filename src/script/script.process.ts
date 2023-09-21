@@ -26,15 +26,11 @@ class Script {
     this.logger.log('init script [START]!!');
 
     this.app = await NestFactory.create<NestExpressApplication>(ScriptModule);
-    // this.userService = this.app.get<UserService>(UserService);
-
     this.logger.log('init script [DONE]!!');
   }
 
   private async process() {
     this.logger.log('process [START]');
-    // const users = await this.userRepository.findAll();
-    // console.log('Test script!!!', users);
     this.logger.log('process [DONE]');
   }
 }

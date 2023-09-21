@@ -4,7 +4,7 @@ export type CreateUserParams = {
 };
 export type UpdateUserParams = {
     username: string;
-    password: string;
+    email: string;
 };
 
 export type CreateUserProfileParams = {
@@ -17,6 +17,7 @@ export type CreateUserProfileParams = {
 export type CreateTodoParams = {
     item : string;
 }
+
 export type UpdateTodoParams = {
     item: string;
 }

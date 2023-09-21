@@ -43,4 +43,10 @@ export class CreateUserDto implements Partial<IUser> {
       example: [1,2],
     })
     roleIds?: number[];
+
+    @ApiProperty({
+      description: 'The type of a user',
+      required: false,
+    })
+    type?: string;
   }

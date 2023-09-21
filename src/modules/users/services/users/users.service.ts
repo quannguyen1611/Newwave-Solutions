@@ -1,14 +1,13 @@
-import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Equal, Like, Repository } from 'typeorm';
 import { User } from '../../../typeorm/entities/user.entity';
-import { CreateUserParams, CreateUserProfileParams, UpdateUserParams } from '../../../utils/types';
+import { CreateUserProfileParams, UpdateUserParams } from '../../../utils/types';
 import { Profile } from 'src/modules/typeorm/entities/profile.entity';
 import * as bcrypt from 'bcrypt';
 import { QueryUserDto, ResponseUserDto, ResponseUserPagingDto } from 'src/modules/users/dtos/OtherUser.dto';
 import { CreateUserDto } from '../../dtos/CreateUser.dto';
 import { RoleEntity } from '../../../typeorm/entities/role.entity'
-
 
 @Injectable()
 export class UsersService {
@@ -18,9 +17,9 @@ export class UsersService {
         @InjectRepository(Profile) private profileRepository: Repository<Profile>,
         @InjectRepository(RoleEntity) private roleRepository: Repository<RoleEntity>,
     ){}
-
-    async createUser(createUserDto: CreateUserDto) : Promise<ResponseUserDto> {
-        const { email, username, password, roleIds, status } = createUserDto;
+    
+    async createUser(createUserDto: CreateUserDto, loggedUser?) : Promise<ResponseUserDto> {
+        const { email, username, password, roleIds, status, type } = createUserDto;
         //detructure the CreateUserTodo object to extract user 
         const existedUser = await this.userRepository
         .createQueryBuilder ('users') //query to check if a user with the provided email or username already existed
@@ -28,10 +27,10 @@ export class UsersService {
             username,
             email,
         })
-        .getOne()
+        .getOne() //Execute the query and get the first matching user
         if (existedUser){
             throw new BadRequestException (
-                'this username is alredy taken'
+                'this username is already taken'
             );
         }
         //create new user
@@ -40,12 +39,15 @@ export class UsersService {
         user.status = status;
         user.roles = [];
         user.email = email;
+        user.roleIds = roleIds;
+        user.type = type;
+        user.createdByUser = loggedUser?.username;
         //check if there is a provided roleId to retrieve role objects
         if(roleIds.length >0){
             const roles = await this.roleRepository
             .createQueryBuilder('roles')
             .where('roles.id IN (:...ids)', {ids: roleIds})
-            .getMany();
+            .getMany(); //Execute the query and get an array of matching role objects
 
             if (roleIds.length != roles.length){
                 throw new BadRequestException('Role not found.');
@@ -57,15 +59,25 @@ export class UsersService {
         await this.userRepository.save(user);
         return this.transformData<ResponseUserDto>(user);
     }
-
     
-    
-    updateUser(id: number, updateUserDetails: UpdateUserParams){
+    async updateUser(id: number, updateUserDetails: UpdateUserParams, loggedUser?){
+        const user = await this.userRepository.findOneBy({id});
+        if (!user) {
+         throw new NotFoundException('User not found');
+        }
+        user.updatedByUser = loggedUser?.username;
+        await this.userRepository.save(user);
         return this.userRepository.update({id}, {...updateUserDetails});
     }
 
-    deleteUser(id: number){
-        return this.userRepository.delete({id});
+    async deleteUser(id: number, loggedUser?) {
+        const user = await this.userRepository.findOneBy({id});
+        if (!user) {
+         throw new NotFoundException('User not found');
+        }
+        user.deletedByUser = loggedUser?.username;
+        await this.userRepository.save(user);
+        await this.userRepository.softDelete(id);
     }
 
     async createUserProfile(
@@ -81,14 +93,13 @@ export class UsersService {
         const newProfile = this.profileRepository.create(createUserProfileDetails);
         const savedProfile = await this.profileRepository.save(newProfile);
         user.profile = savedProfile;
-        return this.userRepository.save(user);
     }
 
 
-    deleteUserProfile(
+    async deleteUserProfile(
         id: number,
     ){
-        return this.profileRepository.delete({id});
+        await this.profileRepository.softDelete({id});
     }
 
     //Generate hash for encypted password
@@ -96,7 +107,6 @@ export class UsersService {
         const saltOrRounds = 10;
         return bcrypt.hash(password, saltOrRounds);
       }
-
 
     transformData<T>(data: any): T {
         if (Array.isArray(data)) {
@@ -110,17 +120,12 @@ export class UsersService {
         }
       }
 
-      
-    findUsers() {
-        return this.userRepository.find({relations: ['profile']});
-    }
-
     async findOne(usernameOrEmail: string): Promise<ResponseUserDto> {
         const user = await this.userRepository.findOne({
           where: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
         });
         if (!user) {
-          throw new BadRequestException(`The user\'s not found`);
+          throw new BadRequestException(`User not found`);
         }
         return this.transformData<ResponseUserDto>(user);
       }
@@ -157,35 +162,8 @@ export class UsersService {
             relations: ['roles'],
         });
         if (!user){
-            throw new BadRequestException('The user\'s not found');
+            throw new BadRequestException('User not found');
         }
         return this.transformData<ResponseUserDto>(User);
     }
-
-
-
-    // createUser(userDetails: CreateUserParams) {
-    //     const newUser = this.userRepository.create({
-    //         ...userDetails, 
-    //         createdAt: new Date(),
-    //     });
-    //     return this.userRepository.save(newUser);
-    // }
-
-    // async loginUser (
-    //     id: number,
-    //     username: string, 
-    //     password: string
-    // ){
-    //     const user = await this.userRepository.findOneBy({id});
-    //     if (!user){
-    //         throw new HttpException('User not found', HttpStatus.NOT_FOUND);
-    //     }
-    //     if (user.password !== password || user.username !== username) {
-    //         throw new HttpException('User not found', HttpStatus.NOT_FOUND);
-    //     }
-    //     return user;
-    // }
-
-    
 }

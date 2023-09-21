@@ -40,6 +40,14 @@ export class CreateRoleDto implements Partial<IRole> {
   })
   @IsNotEmpty()
   isAllPermission: boolean;
+
+  @ApiProperty({
+    description: 'The type of a role',
+    required: false,
+    default: false,
+  })
+  @IsNotEmpty()
+  type: string;
 }
 
 export class UpdateRoleDto implements Partial<IRole> {
@@ -68,6 +76,14 @@ export class UpdateRoleDto implements Partial<IRole> {
   })
   @IsNotEmpty()
   isAllPermission: boolean;
+
+  @ApiProperty({
+    description: "type of user",
+    required: true,
+    default: false,
+  })
+  @IsNotEmpty()
+  type: string;
 }
 
 export class ResponseRoleDto implements Partial<IRole> {

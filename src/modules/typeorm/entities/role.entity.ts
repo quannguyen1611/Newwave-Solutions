@@ -14,4 +14,7 @@ export class RoleEntity extends BaseEntity {
 
   @Column({ nullable: false, default: false })
   isAllPermission: boolean;
+
+  @Column({nullable: false, default: false})
+  type: string;
 }

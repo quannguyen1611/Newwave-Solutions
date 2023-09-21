@@ -12,9 +12,15 @@ export class Profile extends BaseEntity{
     @Column({ nullable: true })
     lastname?: string;
 
-    @Column()
+    @Column({ nullable: true })
     age: number;
 
-    @Column()
+    @Column({ nullable: true })
     dob: string;  
+
+    @Column({ nullable: true })
+    createdByUser: string;
+
+    @Column({ nullable: true })
+    deletedByUser: string;
 }

@@ -19,17 +19,23 @@ export class UpdateUserDto implements Partial<IUser> {
     @IsEnum(EUserStatus)
     @IsNotEmpty()
     status?: EUserStatus;
-  
+    
     @ApiProperty({
-      description: 'The password of a user',
-      required: true,
+      description: 'The email of a user',
+      required: false,
     })
-    password: string;
-  
+    email: string;
+
     @ApiProperty({
       description: 'The roleIds of a user',
       example: [1, 2, 3],
       required: false,
     })
     roleIds: number[];
+
+    @ApiProperty({
+      description: 'The type of a user',
+      required: false,
+    })
+    type: string;
   }
