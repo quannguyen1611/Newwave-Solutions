@@ -5,10 +5,14 @@ import {
   } from '@nestjs/common';
   import { JwtService } from '@nestjs/jwt';
   import { AuthGuard } from '@nestjs/passport';
+import { UsersService } from 'src/modules/users/services/users/users.service';
   
   @Injectable()
   export class AccessTokenGuard extends AuthGuard('jwt') {
-    constructor(private readonly jwtService: JwtService) {
+    constructor(
+      private readonly jwtService: JwtService,
+      private readonly userService: UsersService
+      ) {
       super();
     }
 
@@ -24,6 +28,11 @@ import {
         });
         // We're assiginign the payload to the request object here
         // so that we can access it in our route handlers
+        const user = await this.userService.findById(payload.sub);
+        //check if token is valid, if not then throw exception
+        if (user.last_password_changed_at >= new Date(payload.last_login)){
+          throw new UnauthorizedException()
+        }
         request['user'] = payload;
       } catch (e) {
         throw new UnauthorizedException();

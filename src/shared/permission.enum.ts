@@ -3,6 +3,7 @@ export enum EPermissions {
     CmsUserRead = 'cms_user_read',
     CmsUserUpdate = 'cms_user_update',
     CmsUserDelete = 'cms_user_delete',
+    CmsUserChangePass = 'cms_user_change_password',
 
     CmsProfileCreate = 'cms_profile_create',
     CmsProfileDelete = 'cms_profile_delete',

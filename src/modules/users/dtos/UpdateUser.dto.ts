@@ -38,4 +38,10 @@ export class UpdateUserDto implements Partial<IUser> {
       required: false,
     })
     type: string;
+
+    @ApiProperty({
+      description: 'The type of a user',
+      required: false,
+    })
+    file: string;
   }

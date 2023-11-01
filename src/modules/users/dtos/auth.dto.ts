@@ -30,6 +30,13 @@ export class ResponseAuthDto {
   refreshToken?: string;
 }
 
+export class PasswordAuthDto {
+  @ApiProperty({
+    description: 'The accessToken of account.',
+  })
+  resetToken?: string;
+}
+
 export class ResponseProfileDto extends ResponseUserDto {}
 
 export type JwtPayload = {

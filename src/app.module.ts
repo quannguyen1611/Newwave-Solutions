@@ -7,12 +7,23 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { RoleModule } from './modules/role/role.module';
 import { TodosModule } from './modules/users/todos.module';
+import { MailModule } from './modules/users/mails.module';
+import { BullModule } from '@nestjs/bull';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       envFilePath: '.env',
     }),
+    BullModule.forRoot({
+      redis: {
+        host: process.env.QUEUE_HOST,
+        port: Number(process.env.QUEUE_PORT),
+      },
+    }),
+    MailModule,
     AuthModule,
     UsersModule,
     TypeOrmModule.forRoot({
@@ -25,7 +36,7 @@ import { TodosModule } from './modules/users/todos.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
     }),
-    UsersModule, TodosModule, RoleModule,
+    UsersModule, TodosModule, RoleModule, MailModule,
   ],
 })
 export class AppModule {

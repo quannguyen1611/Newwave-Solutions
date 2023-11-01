@@ -24,7 +24,8 @@ import {
           'deleted_at',
           'password',
           'status',
-          'type'
+          'type',
+          'last_password_changed_at'
         ]),
       );
     }
@@ -88,6 +89,12 @@ import {
       required: false,
     })
     status?: EUserStatus;
+
+    @ApiProperty({
+      description: 'The time when user last changed their password',
+      required: false,
+    })
+    last_password_changed_at: Date;
   }
   
   export class ResponseUserPagingDto implements IResponsePaging<ResponseUserDto> {

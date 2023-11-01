@@ -8,6 +8,7 @@ import { AccessTokenStrategy } from './access-token.strategy';
 import { RefreshTokenStrategy } from './refresh-token.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../typeorm/entities/user.entity';
+import { MailModule } from '../users/mails.module';
 
 @Module({
   imports: [

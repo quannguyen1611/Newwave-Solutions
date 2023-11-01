@@ -8,4 +8,5 @@ export interface IUser {
   readonly createdAt?: Date;
   readonly updatedAt?: Date;
   readonly status: EUserStatus;
+  readonly lastPasswordChangedAt: Date;
 }
