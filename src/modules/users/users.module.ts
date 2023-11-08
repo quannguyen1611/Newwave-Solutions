@@ -9,11 +9,15 @@ import { UsersControllerPublic } from './controllers/users/user.controller.publi
 import { ConfigModule } from '@nestjs/config';
 import { MailModule } from '../users/mails.module';
 import { BullModule } from '@nestjs/bull';
-import { MailProcessor } from './services/mails/mail.processor';
-
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
     imports: [
+        CacheModule.register({
+            isGlobal: true,
+            host: 'localhost',
+            port: 6379,
+        }),
         BullModule.registerQueue({
             name: 'mail',
             redis: {
@@ -22,13 +26,14 @@ import { MailProcessor } from './services/mails/mail.processor';
                 enableReadyCheck: false,
               },
           }),
-        //UsersModule,
         MailModule,
         TypeOrmModule.forFeature([User, Profile, RoleEntity]),
         ConfigModule.forRoot(), 
     ],
     controllers: [UsersController, UsersControllerPublic],
-    providers: [UsersService],
+    providers: [
+        UsersService
+    ],
     exports: [UsersService],
 })
 export class UsersModule {}

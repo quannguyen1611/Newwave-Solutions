@@ -11,8 +11,6 @@ import { MailProcessor } from './services/mails/mail.processor';
     MailerModule.forRootAsync({
       imports: [ConfigModule,], // import module if not enabled globally
       useFactory: async (config: ConfigService) => ({
-        // transport: config.get("MAIL_TRANSPORT"),
-        // or
         transport: {
           host: config.get('MAIL_HOST'),
           port: config.get('MAIL_PORT'),

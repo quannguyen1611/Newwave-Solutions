@@ -2,12 +2,8 @@ import { extname } from 'path';
 import { existsSync, mkdirSync } from 'fs';
 import { diskStorage } from 'multer';
 import { v4 as uuid } from 'uuid';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-//import { User } from 'src/decorator/user.decorator';
+import { HttpException, HttpStatus} from '@nestjs/common';
 require('dotenv').config(); // Load environment variables from .env
-import { User } from '../../../typeorm/entities/user.entity';
 
 // Multer configuration
 export const multerConfig = {

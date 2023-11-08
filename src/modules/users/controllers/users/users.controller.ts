@@ -20,7 +20,7 @@ import { multerOptions } from '../../services/File/uploadFile';
 import { UpdateUserFileParams } from 'src/modules/utils/types';
 import { Response } from 'express';
 import { QueryUserDto, ResponseUserPagingDto } from '../../dtos/OtherUser.dto';
-import { userInfo } from 'os';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @ApiTags('user')
 @Controller('user')
@@ -59,6 +59,7 @@ export class UsersController {
     }
 
     @Get('users')
+    @ApiOperation({ summary: 'Export user' })
     async exportCsv(@Res() res: Response) {
         const filename = await this.userService.generateCsv(); // Call your service function to generate the CSV
         // Set the response headers for file download
@@ -84,8 +85,8 @@ export class UsersController {
         await this.userService.changePassword(user.username, changePasswordDto);
     }
 
-    @ApiBody({type: ForgotPasswordDto,})
     @Put('ForgotPassword')
+    @ApiBody({type: ForgotPasswordDto,})
     @ApiOperation({ summary: 'Forgot password' })
     forgotPassword(@Body() forgotPasswordDto: ForgotPasswordDto) : Promise<PasswordAuthDto> {
         return this.userService.forgotPassword(forgotPasswordDto);

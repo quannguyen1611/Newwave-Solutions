@@ -1,4 +1,4 @@
-import { BadRequestException, HttpException, HttpStatus, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Equal, Like, Repository } from 'typeorm';
 import { User } from '../../../typeorm/entities/user.entity';
@@ -17,14 +17,18 @@ import { InjectQueue } from '@nestjs/bull';
 import { createObjectCsvWriter } from "csv-writer";
 import { EUserStatus } from '../../users.enum';
 import { Cron } from '@nestjs/schedule';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class UsersService {
+    userService: any;
     save(user: any) {
         throw new Error('Method not implemented.');
     }
     private readonly logger = new Logger(UsersService.name);
     constructor(
+        @Inject(CACHE_MANAGER) private cacheManager: Cache,
         @InjectRepository(User) private userRepository: Repository<User>,
         @InjectRepository(Profile) private profileRepository: Repository<Profile>,
         @InjectRepository(RoleEntity) private roleRepository: Repository<RoleEntity>,
@@ -76,6 +80,7 @@ export class UsersService {
         user.createdAt = new Date();
         const token = Math.floor(1000 + Math.random() * 9000).toString();
         await this.mailQueue.add('sendMail', { user, token }, {delay: 10000}) //delay 10 seconds
+        await this.cacheManager.set('user_${user.id}', user); 
         await this.userRepository.save(user);
         return this.transformData<ResponseUserDto>(user);
     }
@@ -83,9 +88,10 @@ export class UsersService {
     async updateUser(id?: number, updateUserDetails?: UpdateUserParams | UpdateUserFileParams, loggedUser?){
         const user = await this.userRepository.findOneBy({id});
         if (!user) {
-         throw new NotFoundException('User not found');
+            throw new NotFoundException('User not found');
         }
         user.updatedByUser = loggedUser?.username;
+        await this.cacheManager.set('user_${user.id}', user);
         await this.userRepository.save(user);
         return this.userRepository.update({id}, {...updateUserDetails});
     }
@@ -115,10 +121,7 @@ export class UsersService {
         user.profile = savedProfile;
     }
 
-
-    async deleteUserProfile(
-        id: number,
-    ){
+    async deleteUserProfile(id: number,){
         await this.profileRepository.softDelete({id});
     }
 
@@ -235,7 +238,7 @@ export class UsersService {
           ),
            }
         );
-        await this.mailQueue.add('sendForgotPassword', { user}, {delay: 10000}) //delay 10 seconds
+        await this.mailQueue.add('sendForgotPassword', {user}, {delay: 10000}) //delay 10 seconds
         return {resetToken};
     }
 
@@ -265,18 +268,45 @@ export class UsersService {
         }
     }
 
+    async cacheUsers() {
+        const users = await this.userRepository.find();
+        if (users && users.length > 0) {
+            // Store the user list in the cache
+            await this.cacheManager.set('users', users, 0);
+          } else {
+            console.log('Query error');
+            // Handle the error, e.g., return an error response
+            throw new Error('Failed to fetch user data');
+        }
+        return users; // Return the list of users
+    }
+
+    async getCachedUsers() {
+        const cachedUsers = await this.cacheManager.get('users');
+        if (cachedUsers) {
+          // Data was found in the cache
+          return cachedUsers;
+        } else {
+          // Data was not found in the cache; fetch it from the database
+          //const users = await this.userService.findAll();
+          const users = await this.userRepository.find();
+          await this.cacheManager.set('users', users, 0); // Cache for forever (time-to-live)
+          return users;
+        }
+    }
 
     @Cron('0 9-17 * * * ',{ //export every hour from 9-5
         timeZone: 'Asia/Ho_Chi_Minh'
     })
     async generateCsv(): Promise<string> {
+        console.time('my-task'); // Start the timer
         this.logger.debug('Called every 1 hour');
         const currentDate = new Date();
         const currentMinutes = currentDate.getMinutes();
         const currentSeconds = currentDate.getSeconds();
         const currentHour = currentDate.getHours();
         const filename = `user_${currentHour}_${currentMinutes}_${currentSeconds}_${currentDate.getFullYear()}${currentDate.getMonth() + 1}${currentDate.getDate()}.csv`;
-        const users = await this.userRepository.find(); //retrieve all users' data
+        const users: any = await this.getCachedUsers(); //retrieve all users' data from cache
         const csvWriter = createObjectCsvWriter({
             path: filename,
             header: [
@@ -290,6 +320,7 @@ export class UsersService {
         });
         //write data to csv file 
         await csvWriter.writeRecords(users);
+        console.timeEnd('my-task'); // Stop the timer and log the elapsed time
         return filename;
     }
 
